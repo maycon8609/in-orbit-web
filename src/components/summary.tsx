@@ -6,7 +6,7 @@ import ptBR from "dayjs/locale/pt-br";
 import { Button } from "./ui/button";
 import { DialogTrigger } from "./ui/dialog";
 import { InOrbitIcon } from "./on-orbit-icon";
-import { OutlineButton } from "./ui/outline-button";
+import { PendingGoals } from "./pending-goals";
 import { Progress, ProgressIndicator } from "./ui/progress-bar";
 import { Separator } from "./ui/separator";
 
@@ -63,28 +63,7 @@ export function Summary() {
 
         <Separator />
 
-        <div className="flex flex-wrap gap-3">
-          <OutlineButton>
-            <Plus className="size-4 text-zinc-600" />
-            Meditar
-          </OutlineButton>
-          <OutlineButton>
-            <Plus className="size-4 text-zinc-600" />
-            Praticar exercício
-          </OutlineButton>
-          <OutlineButton>
-            <Plus className="size-4 text-zinc-600" />
-            Acordar cedo
-          </OutlineButton>
-          <OutlineButton>
-            <Plus className="size-4 text-zinc-600" />
-            Meditar
-          </OutlineButton>
-          <OutlineButton>
-            <Plus className="size-4 text-zinc-600" />
-            Meditar
-          </OutlineButton>
-        </div>
+        <PendingGoals />
 
         <div className="flex flex-col gap-6">
           <h2 className="text-xl font-medium">Sua semana</h2>
@@ -103,18 +82,20 @@ export function Summary() {
                 </h3>
 
                 <ul className="flex flex-col gap-3">
-                  {goals.map((goal) => (
-                    <li className="flex items-center gap-2" key={goal.id}>
-                      <CheckCircle2 className="size-4 text-green-500" />
-                      <span className="text-sm text-zinc-400">
-                        Você completou "
-                        <span className="text-zinc-100">{goal.title}</span>" às{" "}
-                        <span className="text-zinc-100">
-                          {dayjs(goal.completedAt).format("HH:mm")}h
+                  {goals.map((goal) => {
+                    const time = dayjs(goal.completedAt).format("HH:mm");
+
+                    return (
+                      <li className="flex items-center gap-2" key={goal.id}>
+                        <CheckCircle2 className="size-4 text-green-500" />
+                        <span className="text-sm text-zinc-400">
+                          Você completou "
+                          <span className="text-zinc-100">{goal.title}</span>"
+                          às <span className="text-zinc-100">{time}h</span>
                         </span>
-                      </span>
-                    </li>
-                  ))}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             );
