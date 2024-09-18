@@ -25,7 +25,7 @@ In Orbit is a habit tracker where you can create and monitor the progress of new
 
 ### Install dependencies
 ```bash
-npm run install
+npm install
 ```
 
 ### Run project
